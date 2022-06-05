@@ -1,0 +1,23 @@
+spring:
+  jpa:
+    open-in-view: 'false'
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.MySQL8Dialect
+        format_sql: 'true'
+    hibernate:
+      ddl-auto: create
+  datasource:
+    username: root
+    url: jdbc:mysql://localhost:3306/pathfinder?allowPublicKeyRetrieval=true&useSSL=false&createDatabaseIfNotExist=true
+    driverClassName: com.mysql.cj.jdbc.Driver
+    password: ''
+logging:
+  level:
+    org:
+      hibernate:
+        type:
+          descriptor: TRACE
+        SQL: DEBUG
+      nodeValue: WARN
+    blog: WARN
