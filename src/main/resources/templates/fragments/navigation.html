@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<!-- Navigation Fragment -->
+<nav class="main-nav" th:fragment="navigation">
+    <ul>
+        <li>
+            <a class="btn btn-light w-100" href="/">Home</a>
+        </li>
+
+        <th:block th:if="${@currentUser.isLogged()}">
+            <li>
+                <a class="btn btn-light w-100" href="/">Add new route</a>
+            </li>
+            <li>
+                <a class="btn btn-light w-100" href="/">Profile</a>
+            </li>
+            <th:block th:if="${@currentUser.isAdmin()}">
+                <li>
+                    <a class="btn btn-light w-100" href="/">Admin</a>
+                </li>
+            </th:block>
+            <li>
+                <form class="mb-0" th:action="@{/users/logout}" th:method="post">
+                    <button class="btn btn-light w-100" type="submit">Logout</button>
+                </form>
+            </li>
+        </th:block>
+
+        <th:block th:unless="${@currentUser.isLogged()}">
+            <li>
+                <a class="btn btn-light w-100" th:href="@{/users/login}">Login</a>
+            </li>
+            <li>
+                <a class="btn btn-light w-100" th:href="@{/users/register}">Register</a>
+            </li>
+        </th:block>
+
+        <li>
+            <a class="btn btn-light w-100" href="/">About</a>
+        </li>
+    </ul>
+</nav>
+<!-- END Navigation Fragment -->
+
+</body>
+</html>

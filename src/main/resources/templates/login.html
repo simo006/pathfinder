@@ -1,0 +1,63 @@
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+    <link rel="stylesheet" href="/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/css/styles.css">
+    <link rel="stylesheet" href="/css/mobile.css">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.4/css/all.css">
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.4.0/dist/leaflet.css">
+    <script src="https://unpkg.com/leaflet@1.4.0/dist/leaflet.js"></script>
+</head>
+<body>
+
+<!-- Wrapper -->
+<div class="wrapper">
+    <!-- Navigation -->
+    <header>
+        <th:block th:insert="fragments/navigation :: navigation"></th:block>
+    </header>
+    <!-- END Navigation -->
+
+    <!-- Login Container -->
+    <main class="p-5 align-content-center bg-blur my-register-div">
+        <h1 class="border-bottom mb-5">Login</h1>
+        <div class="d-flex justify-content-center">
+            <div class="row g-3 align-items-center">
+                <form th:action="@{/users/login}" th:method="post">
+                    <div>
+                        <div class="col-auto">
+                            <label for="inputUsername" class="col-form-label ">Username</label>
+                        </div>
+                        <div class="col-auto">
+                            <input id="inputUsername" class="form-control" name="username"
+                                   aria-describedby="usernameHelpInline" required>
+                        </div>
+                    </div>
+                    <div>
+                        <div class="col-auto">
+                            <label for="inputPassword" class="col-form-label ">Password</label>
+                        </div>
+                        <div class="col-auto">
+                            <input id="inputPassword" class="form-control" type="password" name="password"
+                                   aria-describedby="passwordHelpInline" required>
+                        </div>
+                    </div>
+                    <div class="d-flex justify-content-center mt-2">
+                        <button class="btn btn-primary btn-block w-50" type="submit">Login</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </main>
+    <!-- End Login Container -->
+</div>
+<!-- END Wrapper -->
+
+<!-- Footer -->
+<th:block th:insert="fragments/footer :: footer"></th:block>
+<!-- END Footer -->
+
+</body>
+</html>

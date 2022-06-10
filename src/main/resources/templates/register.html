@@ -1,0 +1,124 @@
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Register</title>
+    <link rel="stylesheet" href="/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/css/styles.css">
+    <link rel="stylesheet" href="/css/mobile.css">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.4/css/all.css">
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.4.0/dist/leaflet.css">
+    <script src="https://unpkg.com/leaflet@1.4.0/dist/leaflet.js"></script>
+</head>
+<body>
+
+<!-- Wrapper -->
+<div class="wrapper">
+    <!-- Navigation -->
+    <header>
+        <th:block th:insert="fragments/navigation :: navigation"></th:block>
+    </header>
+    <!-- END Navigation -->
+
+    <!-- Register Container -->
+    <main class="p-5 align-content-center bg-blur my-register-div">
+        <h1 class="border-bottom">Register</h1>
+        <div class="d-flex justify-content-center ">
+            <div class="row g-3">
+                <!--/*@thymesVar id="userInput" type="com.example.pathfinder.model.dto.RegisterUserDto"*/-->
+                <form th:action="@{/users/register}" th:method="post" th:object="${userInput}">
+                    <div>
+                        <div class="col-auto">
+                            <label for="inputUsername" class="col-form-label">Username</label>
+                        </div>
+                        <div class="col-auto">
+                            <input id="inputUsername" class="form-control" th:field="*{username}"
+                                   th:errorclass="is-invalid" minlength="5" maxlength="20"
+                                   aria-describedby="usernameHelpInline" required>
+                            <small id="usernameError" class="invalid-feedback text-white bg-danger rounded px-2 py-1"
+                                   th:if="${#fields.hasErrors('username')}" th:errors="*{username}">
+                                Error message
+                            </small>
+                        </div>
+                    </div>
+
+                    <div>
+                        <div class="col-auto">
+                            <label for="inputFullName" class="col-form-label">Full Name</label>
+                        </div>
+                        <div class="col-auto">
+                            <input id="inputFullName" class="form-control" th:field="*{fullName}"
+                                   th:errorclass="is-invalid" minlength="5" maxlength="20"
+                                   aria-describedby="fullNameHelpInline" required>
+                            <small id="fullNameError" class="invalid-feedback text-white bg-danger rounded px-2 py-1"
+                                   th:if="${#fields.hasErrors('fullName')}" th:errors="*{fullName}">
+                                Error message
+                            </small>
+                        </div>
+                    </div>
+
+                    <div>
+                        <div class="col-auto">
+                            <label for="inputAge" class="col-form-label">Age</label>
+                        </div>
+                        <div class="col-auto">
+                            <input id="inputAge" class="form-control" th:field="*{age}" th:errorclass="is-invalid"
+                                   type="number" min="0" max="90" aria-describedby="ageHelpInline" required>
+                            <small id="ageError" class="invalid-feedback text-white bg-danger rounded px-2 py-1"
+                                   th:if="${#fields.hasErrors('age')}">
+                                Error message
+                            </small>
+                        </div>
+                    </div>
+
+                    <div>
+                        <div class="col-auto">
+                            <label for="inputPassword" class="col-form-label">Password</label>
+                        </div>
+                        <div class="col-auto">
+                            <input id="inputPassword" class="form-control" th:field="*{password}"
+                                   th:errorclass="is-invalid"
+                                   type="password" minlength="5" maxlength="20" aria-describedby="passwordHelpInline"
+                                   required>
+                            <small id="passwordError" class="invalid-feedback text-white bg-danger rounded px-2 py-1"
+                                   th:if="${#fields.hasErrors('password')}" th:errors="*{password}">
+                                Error message
+                            </small>
+                        </div>
+                    </div>
+
+                    <div>
+                        <div class="col-auto">
+                            <label for="inputConfirmPassword" class="col-form-label">Confirm Password</label>
+                        </div>
+                        <div class="col-auto">
+                            <input id="inputConfirmPassword" class="form-control" th:field="*{confirmPassword}"
+                                   th:errorclass="is-invalid"
+                                   type="password" minlength="5" maxlength="20"
+                                   aria-describedby="confirmPasswordHelpInline" required>
+                            <small id="confirmPasswordError"
+                                   class="invalid-feedback text-white bg-danger rounded px-2 py-1"
+                                   th:if="${#fields.hasErrors('confirmPassword')}" th:errors="*{confirmPassword}">
+                                Error message
+                            </small>
+                        </div>
+                    </div>
+
+                    <div class="d-flex justify-content-center mt-4">
+                        <button class="btn btn-primary btn-block w-50" type="submit">Register</button>
+                    </div>
+
+                </form>
+            </div>
+        </div>
+    </main>
+    <!-- End Register Container -->
+</div>
+<!-- END Wrapper -->
+
+<!-- Footer -->
+<th:block th:insert="fragments/footer :: footer"></th:block>
+<!-- END Footer -->
+
+</body>
+</html>
