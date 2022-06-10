@@ -8,6 +8,13 @@ import javax.persistence.*;
 @Table(name = "roles")
 public class Role extends BaseEntity {
 
+    public Role() {
+    }
+
+    public Role(RoleEnum role) {
+        this.role = role;
+    }
+
     @Column(nullable = false)
     @Enumerated(value = EnumType.STRING)
     private RoleEnum role;

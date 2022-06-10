@@ -9,7 +9,7 @@ import java.util.Set;
 @Table(name = "routes")
 public class Route extends BaseEntity {
 
-    @Column(name = "gpx_coordinates", columnDefinition = "TEXT")
+    @Column(name = "gpx_coordinates", columnDefinition = "LONGTEXT")
     private String gpxCoordinates;
 
     @Column
@@ -24,6 +24,9 @@ public class Route extends BaseEntity {
 
     @Column(name = "video_url")
     private String videoUrl;
+
+    @Column(columnDefinition = "LONGTEXT")
+    private String description;
 
     @ManyToMany
     @JoinTable(name = "routes_categories",
@@ -73,6 +76,15 @@ public class Route extends BaseEntity {
 
     public Route setVideoUrl(String videoUrl) {
         this.videoUrl = videoUrl;
+        return this;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public Route setDescription(String description) {
+        this.description = description;
         return this;
     }
 

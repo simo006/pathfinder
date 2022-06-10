@@ -9,16 +9,19 @@ import java.util.Set;
 @Table(name = "users")
 public class User extends BaseEntity {
 
-    @Column
+    @Column(length = 20, unique = true)
     private String username;
 
     @Column
     private String password;
 
-    @Column
-    private String email;
+    @Column(name = "full_name")
+    private String fullName;
 
-    @ManyToMany
+    @Column
+    private Integer age;
+
+    @ManyToMany(fetch = FetchType.EAGER, cascade = {CascadeType.PERSIST})
     @JoinTable(name = "users_roles",
             joinColumns = @JoinColumn(name = "user_id"),
             inverseJoinColumns = @JoinColumn(name = "role_id"))
@@ -46,12 +49,21 @@ public class User extends BaseEntity {
         return this;
     }
 
-    public String getEmail() {
-        return email;
+    public String getFullName() {
+        return fullName;
     }
 
-    public User setEmail(String email) {
-        this.email = email;
+    public User setFullName(String fullName) {
+        this.fullName = fullName;
+        return this;
+    }
+
+    public Integer getAge() {
+        return age;
+    }
+
+    public User setAge(Integer age) {
+        this.age = age;
         return this;
     }
 
