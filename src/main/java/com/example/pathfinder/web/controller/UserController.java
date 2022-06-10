@@ -54,8 +54,12 @@ public class UserController {
     }
 
     @PostMapping("/login")
-    public String loginForm(LoginUserDto loginUserDto) {
-        userService.login(loginUserDto);
+    public String loginForm(LoginUserDto loginUserDto, RedirectAttributes redirectAttributes) {
+        if (!userService.login(loginUserDto)) {
+            redirectAttributes.addFlashAttribute("noUserFound", "No user with the given username and password was found!");
+
+            return "redirect:/users/login";
+        }
 
         return "redirect:/";
     }
