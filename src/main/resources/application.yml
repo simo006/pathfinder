@@ -6,7 +6,7 @@ spring:
         dialect: org.hibernate.dialect.MySQL8Dialect
         format_sql: 'true'
     hibernate:
-      ddl-auto: create
+      ddl-auto: update
   datasource:
     username: root
     url: jdbc:mysql://localhost:3306/pathfinder?allowPublicKeyRetrieval=true&useSSL=false&createDatabaseIfNotExist=true
