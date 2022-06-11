@@ -79,7 +79,7 @@
                             <input id="inputPassword" class="form-control" th:field="*{password}"
                                    th:errorclass="is-invalid"
                                    type="password" minlength="5" maxlength="20" aria-describedby="passwordHelpInline"
-                                   required>
+                                   autocomplete="off" required>
                             <small id="passwordError" class="invalid-feedback text-white bg-danger rounded px-2 py-1"
                                    th:if="${#fields.hasErrors('password')}" th:errors="*{password}">
                                 Error message
@@ -95,7 +95,8 @@
                             <input id="inputConfirmPassword" class="form-control" th:field="*{confirmPassword}"
                                    th:errorclass="is-invalid"
                                    type="password" minlength="5" maxlength="20"
-                                   aria-describedby="confirmPasswordHelpInline" required>
+                                   aria-describedby="confirmPasswordHelpInline"
+                                   autocomplete="off" required>
                             <small id="confirmPasswordError"
                                    class="invalid-feedback text-white bg-danger rounded px-2 py-1"
                                    th:if="${#fields.hasErrors('confirmPassword')}" th:errors="*{confirmPassword}">

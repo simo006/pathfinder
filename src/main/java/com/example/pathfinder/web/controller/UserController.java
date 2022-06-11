@@ -34,8 +34,8 @@ public class UserController {
     }
 
     @PostMapping("/register")
-    public String registerForm(@Valid RegisterUserDto registerUserDto, BindingResult bindingResult,
-                               RedirectAttributes redirectAttributes) {
+    public String registerForm(@ModelAttribute("userInput") @Valid RegisterUserDto registerUserDto,
+                               BindingResult bindingResult, RedirectAttributes redirectAttributes) {
         if (bindingResult.hasErrors()) {
             redirectAttributes.addFlashAttribute("org.springframework.validation.BindingResult.userInput", bindingResult);
             redirectAttributes.addFlashAttribute("userInput", registerUserDto);

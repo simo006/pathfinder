@@ -23,12 +23,12 @@ public class RegisterUserDto {
     private Integer age;
 
     @NotBlank
-    @Min(5)
+    @Size(min = 5)
     @Password
     private String password;
 
     @NotBlank
-    @Min(5)
+    @Size(min = 5)
     private String confirmPassword;
 
     public String getUsername() {
