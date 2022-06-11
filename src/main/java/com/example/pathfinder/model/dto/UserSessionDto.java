@@ -1,6 +1,7 @@
 package com.example.pathfinder.model.dto;
 
 import com.example.pathfinder.model.entity.Role;
+import com.example.pathfinder.model.enums.LevelEnum;
 
 import java.util.Set;
 
@@ -8,6 +9,9 @@ public class UserSessionDto {
 
     private Long id;
     private String username;
+    private String fullName;
+    private Integer age;
+    private LevelEnum level;
     private Set<Role> roles;
 
     public Long getId() {
@@ -25,6 +29,33 @@ public class UserSessionDto {
 
     public UserSessionDto setUsername(String username) {
         this.username = username;
+        return this;
+    }
+
+    public String getFullName() {
+        return fullName;
+    }
+
+    public UserSessionDto setFullName(String fullName) {
+        this.fullName = fullName;
+        return this;
+    }
+
+    public Integer getAge() {
+        return age;
+    }
+
+    public UserSessionDto setAge(Integer age) {
+        this.age = age;
+        return this;
+    }
+
+    public LevelEnum getLevel() {
+        return level;
+    }
+
+    public UserSessionDto setLevel(LevelEnum level) {
+        this.level = level;
         return this;
     }
 

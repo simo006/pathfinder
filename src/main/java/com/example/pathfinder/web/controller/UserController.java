@@ -3,6 +3,7 @@ package com.example.pathfinder.web.controller;
 import com.example.pathfinder.model.dto.LoginUserDto;
 import com.example.pathfinder.model.dto.RegisterUserDto;
 import com.example.pathfinder.service.UserService;
+import com.example.pathfinder.user.CurrentUser;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -19,9 +20,11 @@ import javax.validation.Valid;
 public class UserController {
 
     private final UserService userService;
+    private final CurrentUser currentUser;
 
-    public UserController(UserService userService) {
+    public UserController(UserService userService, CurrentUser currentUser) {
         this.userService = userService;
+        this.currentUser = currentUser;
     }
 
     @GetMapping("/register")
@@ -69,5 +72,14 @@ public class UserController {
         userService.logout();
 
         return "redirect:/";
+    }
+
+    @GetMapping("/profile")
+    public String profileView() {
+        if (!currentUser.isLogged()) {
+            return "redirect:/";
+        }
+
+        return "profile";
     }
 }
