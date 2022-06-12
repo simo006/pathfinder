@@ -11,8 +11,6 @@ import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.function.Function;
-import java.util.stream.Collectors;
 
 @Service
 public class RouteServiceImpl implements RouteService {
@@ -42,6 +40,7 @@ public class RouteServiceImpl implements RouteService {
                 .toList();
 
         RouteDetailsViewModel routeDetailsViewModel = modelMapper.map(route, RouteDetailsViewModel.class);
+        routeDetailsViewModel.setAuthorName(route.getAuthor().getFullName());
         routeDetailsViewModel.setPictures(pictures);
 
         return routeDetailsViewModel;
@@ -50,7 +49,8 @@ public class RouteServiceImpl implements RouteService {
     private RouteViewModel mapRouteViewModel(Route route) {
         RouteViewModel routeViewModel = modelMapper.map(route, RouteViewModel.class);
 
-        PictureViewModel picture = modelMapper.map(route.getPictures().get(0), PictureViewModel.class);
+        Picture first = route.getPictures().stream().findFirst().orElseThrow();
+        PictureViewModel picture = modelMapper.map(first, PictureViewModel.class);
         routeViewModel.setPicture(picture);
 
         return routeViewModel;

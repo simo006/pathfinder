@@ -3,7 +3,6 @@ package com.example.pathfinder.model.entity;
 import com.example.pathfinder.model.enums.LevelEnum;
 
 import javax.persistence.*;
-import java.util.List;
 import java.util.Set;
 
 @Entity
@@ -36,7 +35,7 @@ public class Route extends BaseEntity {
     private Set<Category> categories;
 
     @OneToMany(fetch = FetchType.EAGER, mappedBy = "route")
-    private List<Picture> pictures;
+    private Set<Picture> pictures;
 
     public String getGpxCoordinates() {
         return gpxCoordinates;
@@ -101,11 +100,11 @@ public class Route extends BaseEntity {
         return this;
     }
 
-    public List<Picture> getPictures() {
+    public Set<Picture> getPictures() {
         return pictures;
     }
 
-    public Route setPictures(List<Picture> pictures) {
+    public Route setPictures(Set<Picture> pictures) {
         this.pictures = pictures;
         return this;
     }
