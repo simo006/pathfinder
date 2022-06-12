@@ -1,10 +1,12 @@
 package com.example.pathfinder.web.controller;
 
+import com.example.pathfinder.model.view.RouteDetailsViewModel;
 import com.example.pathfinder.model.view.RouteViewModel;
 import com.example.pathfinder.service.RouteService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import java.util.List;
@@ -25,5 +27,13 @@ public class RouteController {
         model.addAttribute("routes", routeViewModels);
 
         return "routes";
+    }
+
+    @GetMapping("/details/{id}")
+    public String routeDetailsView(@PathVariable(name = "id") Long id, Model model) {
+        RouteDetailsViewModel routeDetailsViewModel = routeService.getRouteDetails(id);
+        model.addAttribute("route", routeDetailsViewModel);
+
+        return "route-details";
     }
 }

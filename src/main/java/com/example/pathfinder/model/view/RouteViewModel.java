@@ -1,15 +1,11 @@
 package com.example.pathfinder.model.view;
 
-import com.example.pathfinder.model.entity.Picture;
-
-import java.util.List;
-
 public class RouteViewModel {
 
     private Long id;
     private String name;
     private String description;
-    private String imageUrl;
+    private PictureViewModel picture;
 
     public Long getId() {
         return id;
@@ -38,12 +34,12 @@ public class RouteViewModel {
         return this;
     }
 
-    public String getImageUrl() {
-        return imageUrl;
+    public PictureViewModel getPicture() {
+        return picture;
     }
 
-    public RouteViewModel setImageUrl(String imageUrl) {
-        this.imageUrl = imageUrl;
+    public RouteViewModel setPicture(PictureViewModel picture) {
+        this.picture = picture;
         return this;
     }
 }
