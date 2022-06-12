@@ -2,6 +2,7 @@ package com.example.pathfinder.service.impl;
 
 import com.example.pathfinder.model.entity.Picture;
 import com.example.pathfinder.model.entity.Route;
+import com.example.pathfinder.model.enums.CategoryEnum;
 import com.example.pathfinder.model.view.PictureViewModel;
 import com.example.pathfinder.model.view.RouteDetailsViewModel;
 import com.example.pathfinder.model.view.RouteViewModel;
@@ -11,6 +12,8 @@ import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Set;
+import java.util.stream.Collectors;
 
 @Service
 public class RouteServiceImpl implements RouteService {
@@ -44,6 +47,34 @@ public class RouteServiceImpl implements RouteService {
         routeDetailsViewModel.setPictures(pictures);
 
         return routeDetailsViewModel;
+    }
+
+    @Override
+    public List<RouteViewModel> getPedestrianRoutes() {
+        return getRouteByCategoryName(CategoryEnum.PEDESTRIAN);
+    }
+
+    @Override
+    public List<RouteViewModel> getBicycleRoutes() {
+        return getRouteByCategoryName(CategoryEnum.BICYCLE);
+    }
+
+    @Override
+    public List<RouteViewModel> getMotorcycleRoutes() {
+        return getRouteByCategoryName(CategoryEnum.MOTORCYCLE);
+    }
+
+    @Override
+    public List<RouteViewModel> getCarRoutes() {
+        return getRouteByCategoryName(CategoryEnum.CAR);
+    }
+
+    private List<RouteViewModel> getRouteByCategoryName(CategoryEnum categoryName) {
+        Set<Route> routes = routeRepository.findAllByCategoryNameEquals(categoryName);
+
+        return routes.stream()
+                .map(this::mapRouteViewModel)
+                .collect(Collectors.toList());
     }
 
     private RouteViewModel mapRouteViewModel(Route route) {

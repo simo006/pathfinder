@@ -10,4 +10,12 @@ public interface RouteService {
     List<RouteViewModel> getAllRoutes();
 
     RouteDetailsViewModel getRouteDetails(Long id);
+
+    List<RouteViewModel> getPedestrianRoutes();
+
+    List<RouteViewModel> getBicycleRoutes();
+
+    List<RouteViewModel> getMotorcycleRoutes();
+
+    List<RouteViewModel> getCarRoutes();
 }

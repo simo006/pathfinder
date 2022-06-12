@@ -1,0 +1,47 @@
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Routes</title>
+    <link rel="stylesheet" href="/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/css/styles.css">
+    <link rel="stylesheet" href="/css/mobile.css">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.4/css/all.css">
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.4.0/dist/leaflet.css">
+    <script src="https://unpkg.com/leaflet@1.4.0/dist/leaflet.js"></script>
+</head>
+<body>
+
+<!-- Wrapper -->
+<div class="wrapper">
+    <!-- Navigation -->
+    <header>
+        <th:block th:insert="fragments/navigation :: navigation"></th:block>
+    </header>
+    <!-- END Navigation -->
+
+    <!-- Routes Container -->
+    <main class="align-content-center bg-blur">
+        <!--/*@thymesVar id="title" type="java.lang.String"*/-->
+        <h1 class="border-bottom mb-5" th:text="${title}">Title</h1>
+
+        <!--/*@thymesVar id="routes" type="java.util.List<com.example.pathfinder.model.view.RouteViewModel>"*/-->
+        <section th:classappend="${!routeStat.first} ? mt-5 : ''" class="road" th:each="route: ${routes}">
+            <div>
+                <h2 th:text="${route.name}">Title</h2>
+                <p th:text="${route.description}">Very long description</p>
+                <a th:href="@{/routes/details/{id}(id=${route.id})}" class="btn btn-dark">Learn More</a>
+            </div>
+            <img class="rounded-circle w-75 ml-5" th:src="${route.picture.url}" th:alt="${route.picture.title}">
+        </section>
+    </main>
+    <!-- End Routes Container -->
+</div>
+<!-- END Wrapper -->
+
+<!-- Footer -->
+<th:block th:insert="fragments/footer :: footer"></th:block>
+<!-- END Footer -->
+
+</body>
+</html>

@@ -36,4 +36,40 @@ public class RouteController {
 
         return "route-details";
     }
+
+    @GetMapping("/pedestrian")
+    public String pedestrianRoutesView(Model model) {
+        List<RouteViewModel> routeViewModels = routeService.getPedestrianRoutes();
+        model.addAttribute("routes", routeViewModels);
+        model.addAttribute("title", "Pedestrian routes");
+
+        return "routes-category";
+    }
+
+    @GetMapping("/bicycle")
+    public String bicycleRoutesView(Model model) {
+        List<RouteViewModel> routeViewModels = routeService.getBicycleRoutes();
+        model.addAttribute("routes", routeViewModels);
+        model.addAttribute("title", "Bicycle routes");
+
+        return "routes-category";
+    }
+
+    @GetMapping("/motorcycle")
+    public String motorcycleRoutesView(Model model) {
+        List<RouteViewModel> routeViewModels = routeService.getMotorcycleRoutes();
+        model.addAttribute("routes", routeViewModels);
+        model.addAttribute("title", "Motorcycle routes");
+
+        return "routes-category";
+    }
+
+    @GetMapping("/car")
+    public String carRoutesView(Model model) {
+        List<RouteViewModel> routeViewModels = routeService.getCarRoutes();
+        model.addAttribute("routes", routeViewModels);
+        model.addAttribute("title", "Car routes");
+
+        return "routes-category";
+    }
 }
