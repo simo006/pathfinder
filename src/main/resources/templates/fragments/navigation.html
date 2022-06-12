@@ -13,6 +13,10 @@
             <a class="btn btn-light w-100" th:href="@{/}">Home</a>
         </li>
 
+        <li>
+            <a class="btn btn-light w-100" th:href="@{/routes}">Routes</a>
+        </li>
+
         <th:block th:if="${@currentUser.isLogged()}">
             <li>
                 <a class="btn btn-light w-100" href="/">Add new route</a>
