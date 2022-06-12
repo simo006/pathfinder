@@ -10,7 +10,7 @@
 <nav class="main-nav" th:fragment="navigation">
     <ul>
         <li>
-            <a class="btn btn-light w-100" href="/">Home</a>
+            <a class="btn btn-light w-100" th:href="@{/}">Home</a>
         </li>
 
         <th:block th:if="${@currentUser.isLogged()}">
