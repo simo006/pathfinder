@@ -1,0 +1,132 @@
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add route</title>
+    <link rel="stylesheet" href="/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/css/styles.css">
+    <link rel="stylesheet" href="/css/mobile.css">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.4/css/all.css">
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.4.0/dist/leaflet.css">
+    <script src="https://unpkg.com/leaflet@1.4.0/dist/leaflet.js"></script>
+</head>
+<body>
+
+<!-- Wrapper -->
+<div class="wrapper">
+    <!-- Navigation -->
+    <header>
+        <th:block th:insert="fragments/navigation :: navigation"></th:block>
+    </header>
+    <!-- END Navigation -->
+
+    <!-- About Container -->
+    <main class="p-5 align-content-center bg-blur">
+        <div class="row justify-content-center">
+            <!--/*@thymesVar id="routeData" type="com.example.pathfinder.model.dto.AddModelDto"*/-->
+            <form id="add-route-form" class="w-50 rounded text-white" th:action="@{/routes/add}" th:method="post"
+                  th:object="${routeData}" enctype="multipart/form-data">
+                <h3 class="border-left border-light pl-2">Add a new route</h3>
+
+                <div>
+                    <div class="form-group">
+                        <label for="inputName" class="col-form-label">Name</label>
+                        <input id="inputName" class="form-control" th:field="*{name}" th:errorclass="is-invalid"
+                               minlength="5" maxlength="20" aria-describedby="inputNameError" required>
+                        <small id="inputNameError" class="invalid-feedback text-white bg-danger rounded px-2 py-1"
+                               th:if="${#fields.hasErrors('name')}" th:errors="*{name}">
+                            Error message
+                        </small>
+                    </div>
+                </div>
+
+                <div>
+                    <div class="form-group">
+                        <label for="inputDescription" class="col-form-label">Description</label>
+                        <textarea id="inputDescription" class="form-control" th:field="*{description}"
+                                  th:errorclass="is-invalid" minlength="5" aria-describedby="inputDescriptionError"
+                                  required></textarea>
+                        <small id="inputDescriptionError" class="invalid-feedback text-white bg-danger rounded px-2 py-1"
+                               th:if="${#fields.hasErrors('description')}" th:errors="*{description}">
+                            Error message
+                        </small>
+                    </div>
+                </div>
+
+                <div>
+                    <div class="form-group">
+                        <label for="inputGpx" class="col-form-label">GPX Coordinates</label>
+                        <input id="inputGpx" class="form-control-file" type="file" th:field="*{gpxCoordinates}"
+                               th:errorclass="is-invalid" aria-describedby="inputGpxError" required>
+                        <small id="inputGpxError" class="invalid-feedback text-white bg-danger rounded px-2 py-1"
+                               th:if="${#fields.hasErrors('gpxCoordinates')}" th:errors="*{gpxCoordinates}">
+                            Error message
+                        </small>
+                    </div>
+                </div>
+
+                <div>
+                    <div class="form-group">
+                        <label for="level" class="col-form-label">Level</label>
+                        <select id="level" class="custom-select" name="level">
+                            <option value="0" selected="selected" disabled="disabled">Select level</option>
+                            <!--/*@thymesVar id="levels" type="java.util.List<com.example.pathfinder.model.enums.LevelEnum>"*/-->
+                            <option th:each="level : ${levels}" th:value="${level}" th:text="${level}"
+                                    th:selected="${routeData.level == level}">
+                                Level
+                            </option>
+                        </select>
+                    </div>
+                </div>
+
+                <div>
+                    <div class="form-group">
+                        <label for="videoUrl">Video Url (only last eleven characters from Youtube)</label>
+                        <input id="videoUrl" class="form-control" aria-describedby="inputVideoUrlError"
+                               th:field="*{videoUrl}"
+                               th:errorclass="is-invalid" placeholder="Video url" required>
+                        <small id="inputVideoUrlError" class="invalid-feedback text-white bg-danger rounded px-2 py-1"
+                               th:if="${#fields.hasErrors('videoUrl')}" th:errors="*{videoUrl}">
+                            Error message
+                        </small>
+                    </div>
+                </div>
+
+                <div>
+                    <div class="form-group">
+                        <p class="mb-0">Categories:</p>
+                        <div class="d-flex justify-content-start align-items-center">
+                            <!--/*@thymesVar id="categories" type="java.util.List<com.example.pathfinder.model.enums.CategoryEnum>"*/-->
+                            <div class="my-2 mr-4" th:each="category : ${categories}">
+                                <input th:id="${category}" class="mr-1"
+                                       name="categories[]" type="checkbox"
+                                       th:value="${category}"
+                                       th:checked="${!#lists.isEmpty(routeData.categories) and #lists.contains(routeData.categories, category)}">
+                                <label th:for="${category}"
+                                       th:text="${category}"></label>
+                            </div>
+                        </div>
+                        <small id="inputCategoriesError" class="invalid-feedback d-block text-white bg-danger rounded px-2 py-1"
+                               th:if="${#fields.hasErrors('categories')}">
+                            You must add at least one category!
+                        </small>
+                    </div>
+                </div>
+
+                <div class="d-flex justify-content-center mt-4">
+                    <button class="btn btn-primary btn-block w-50" type="submit">Add Route</button>
+                </div>
+            </form>
+        </div>
+    </main>
+    <!-- End About Container -->
+</div>
+<!-- END Wrapper -->
+
+<!-- Footer -->
+<th:block th:insert="fragments/footer :: footer"></th:block>
+<!-- END Footer -->
+
+</body>
+</html>
+

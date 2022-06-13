@@ -66,7 +66,7 @@
                 <p th:text="${route.description}" id="route-description">Description: </p>
             </section>
             <section class="gallery">
-                <th:block th:each="picture: ${route.pictures}">
+                <th:block th:if="${route.pictures != null}" th:each="picture: ${route.pictures}">
                     <img class="rounded" th:src="${picture.url}" th:alt="${picture.title}" height="100%">
                 </th:block>
             </section>

@@ -32,7 +32,7 @@
                 <p th:text="${route.description}">Very long description</p>
                 <a th:href="@{/routes/details/{id}(id=${route.id})}" class="btn btn-dark">Learn More</a>
             </div>
-            <img class="rounded-circle w-75 ml-5" th:src="${route.picture.url}" th:alt="${route.picture.title}">
+            <img class="rounded-circle w-75 ml-5" th:if="${route.picture != null}" th:src="${route.picture.url}" th:alt="${route.picture.title}">
         </section>
     </main>
     <!-- End Routes Container -->

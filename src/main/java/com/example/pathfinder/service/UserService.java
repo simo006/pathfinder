@@ -2,6 +2,7 @@ package com.example.pathfinder.service;
 
 import com.example.pathfinder.model.dto.LoginUserDto;
 import com.example.pathfinder.model.dto.RegisterUserDto;
+import com.example.pathfinder.model.entity.User;
 
 public interface UserService {
 
@@ -12,4 +13,6 @@ public interface UserService {
     void logout();
 
     boolean isUsernameFree(String username);
+
+    User getUser(Long id);
 }

@@ -19,7 +19,7 @@
 
         <th:block th:if="${@currentUser.isLogged()}">
             <li>
-                <a class="btn btn-light w-100" href="/">Add new route</a>
+                <a class="btn btn-light w-100" th:href="@{/routes/add}">Add new route</a>
             </li>
             <li>
                 <a class="btn btn-light w-100" th:href="@{/users/profile}">Profile</a>

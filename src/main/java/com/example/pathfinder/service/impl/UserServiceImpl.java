@@ -75,6 +75,11 @@ public class UserServiceImpl implements UserService {
         return !userRepository.existsByUsername(username);
     }
 
+    @Override
+    public User getUser(Long id) {
+        return userRepository.findById(id).orElseThrow();
+    }
+
     private void saveSessionData(User user) {
         UserSessionDto userData = modelMapper.map(user, UserSessionDto.class);
         currentUser.updateData(userData);

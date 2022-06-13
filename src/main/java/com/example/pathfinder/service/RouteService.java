@@ -1,5 +1,6 @@
 package com.example.pathfinder.service;
 
+import com.example.pathfinder.model.dto.AddModelDto;
 import com.example.pathfinder.model.view.RouteDetailsViewModel;
 import com.example.pathfinder.model.view.RouteViewModel;
 
@@ -18,4 +19,6 @@ public interface RouteService {
     List<RouteViewModel> getMotorcycleRoutes();
 
     List<RouteViewModel> getCarRoutes();
+
+    void addRoute(AddModelDto addModelDto);
 }
